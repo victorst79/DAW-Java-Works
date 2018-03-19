@@ -16,3 +16,6 @@ Ejercicios y proyectos 1º año de Ciclo Formativo de Grado Superior en Desarrol
 		<li>Practica 2</li>
 		<li>Practica 3</li>
 	</ul>
+<section id="Practica 1">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non tempore mollitia sed, temporibus, quaerat recusandae dignissimos reprehenderit quo consequuntur quam labore voluptate! Facere deleniti, pariatur accusantium earum, autem officiis expedita!
+</section>
