@@ -4,7 +4,7 @@ Ejercicios y proyectos 1º año de Ciclo Formativo de Grado Superior en Desarrol
 <h1>Indice</h1>
 
 <ul>
-	<li>Practica 1</li>
+	<li><h3>Practica 1</h3></li>
 		<ul>
 			<li>Mate</li>
 			<li>Urna</li>
@@ -14,5 +14,5 @@ Ejercicios y proyectos 1º año de Ciclo Formativo de Grado Superior en Desarrol
 			<li>Cilindro</li>
 			<li>Bombo</li>
 		</ul>
-	<li>Practica 2</li>
+	<li><h3>Practica 2</h3></li>
 </ul>
