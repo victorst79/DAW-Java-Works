@@ -1,5 +1,6 @@
 public class UrnaTrampa extends Urna{
 	public int sacaBola(){
+
 		if ( quedanBolas() ) {
 			if ( (int)(Math.random() * bolas() + 1 ) <= bolas_n) {
 				System.out.println("La bola es NEGRA");
@@ -17,7 +18,7 @@ public class UrnaTrampa extends Urna{
 				}
 				return 0;
 			}else{
-				// saca bola blanca
+				// SACA BOLA BLANCA
 			}
 		}
 

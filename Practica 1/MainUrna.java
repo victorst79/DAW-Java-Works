@@ -20,9 +20,9 @@ public class MainUrna{
 			if(urna1.totalBolas() == 1){
 				int saca3 = urna1.sacaBola();
 				if (saca3 == 0) {
-					System.out.println("La ultima bola es de NEGRA");
+					System.out.println("La ultima bola es de color NEGRA");
 				}else{
-					System.out.println("La ultima bola es de BLANCA");
+					System.out.println("La ultima bola es de color BLANCA");
 				}
 			}
 		}

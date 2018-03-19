@@ -1,5 +1,6 @@
 public class Urna{
 	protected int bolas_n, bolas_b;
+	
 	public Urna(int bolas_n, int bolas_b){
 		this.bolas_n = bolas_n;
 		this.bolas_b = bolas_b;		

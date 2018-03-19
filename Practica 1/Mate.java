@@ -45,29 +45,6 @@ public class Mate{
 		return amigos;		
 	}
 
-	public static int elMenor(int a, int b){
-		if (a > b) {
-			return b;
-		}else{
-			return a;
-		}
-	}
-    
-    // FUNCION ORDENAR ARRAY
-    public static int[] ordenarArray(int[] n) {
-        int aux;
-        for (int i = 0; i < n.length - 1; i++) {
-            for (int x = i + 1; x < n.length; x++) {
-                if (n[x] < n[i]) {
-                    aux = n[i];
-                    n[i] = n[x];
-                    n[x] = aux;
-                }
-            }
-        }
-    	return n;
-    }
-
 	public static boolean primos(int a, int b){
 		boolean primos = true;
 		for (int i = 2; i <= elMenor(a,b) ;i++ ) {
@@ -96,5 +73,27 @@ public class Mate{
 		return potencia;
 	}
 
-
+	// CLASES AGREGADAS
+	
+	public static int elMenor(int a, int b){
+		if (a > b) {
+			return b;
+		}else{
+			return a;
+		}
+	}
+        
+    public static int[] ordenarArray(int[] n) {
+        int aux;
+        for (int i = 0; i < n.length - 1; i++) {
+            for (int x = i + 1; x < n.length; x++) {
+                if (n[x] < n[i]) {
+                    aux = n[i];
+                    n[i] = n[x];
+                    n[x] = aux;
+                }
+            }
+        }
+        return n;
+    }
 }

@@ -7,7 +7,6 @@ public class Bombo{
 			bombo[i]=true;
 		}
 	}
-	
 	public int totalBolas(){
 		int total=0;
 		for(int i=0; i<bombo.length; i++){
@@ -17,7 +16,6 @@ public class Bombo{
 		}
 		return total;
 	}
-
 	public boolean quedanBolas(){
 		if(totalBolas()>0){
 			return true;
@@ -25,7 +23,6 @@ public class Bombo{
 			return false;
 		}
 	}
-
 	public void meteBola(int bola){
 		if((bola>=0)&&(bola<bombo.length)){
 			bombo[bola]=true;
@@ -33,7 +30,6 @@ public class Bombo{
 			System.out.println("No se pudo introducir la bola.");
 		}
 	}
-
 	public int sacaBola(){
 		int bola=-1;
 		if(quedanBolas()){
