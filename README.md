@@ -1,6 +1,10 @@
 # DAW-Java-Works
 Ejercicios y proyectos 1º año de Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web.
-
+<style>
+	ol{
+		list-style: decimal;
+	}
+</style>
 <h1>INDICE</h1>
 	<ul>
 		<li>Practica 1</li>
