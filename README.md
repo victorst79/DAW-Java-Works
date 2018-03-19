@@ -1,18 +1,19 @@
 # DAW-Java-Works
-Ejercicios y proyectos 1º año de Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web.
+Ejercicios Java.
+1º Año Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web.
+
 
 <h1>Indice</h1>
 
+<h3>Practica 1</h3>
 <ul>
-	<li><h3>Practica 1</h3></li>
-		<ul>
-			<li>Mate</li>
-			<li>Urna</li>
-			<li>Circulo</li>
-			<li>Carta</li>
-			<li>UrnaTrampa</li>
-			<li>Cilindro</li>
-			<li>Bombo</li>
-		</ul>
-	<li><h3>Practica 2</h3></li>
+	<li>Mate</li>
+	<li>Urna</li>
+	<li>Circulo</li>
+	<li>Carta</li>
+	<li>UrnaTrampa</li>
+	<li>Cilindro</li>
+	<li>Bombo</li>
 </ul>
+<h3>Practica 2</h3>
+
