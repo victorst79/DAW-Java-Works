@@ -5,7 +5,7 @@ Ejercicios Java.
 
 <h1>Indice</h1>
 
-<h3>[Practica 1](https://github.com/victorst79/DAW-Java-Works/wiki/Practica-1)</h3>
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-1">Practica 1</a></h3>
 <ul>
 	<li>Mate</li>
 	<li>Urna</li>
