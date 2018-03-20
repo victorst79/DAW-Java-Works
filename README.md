@@ -32,10 +32,19 @@ Ejercicios Java.
 
 <h3><a href="">Practica 3</a></h3>
 <ul>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
+	<li>Lista</li>
+	<li>Pila</li>
+	<li>Cola</li>
+	<li>Caracter</li>
+	<li>Cadena</li>
+	<li>BarajaDeCartas</li>
+	<li>SerVivo</li>
+		<ul>
+			<li>Animales</li>
+			<li>Vegetales</li>
+			<li>Mamiferos</li>
+			<li>Reptiles</li>
+			<li>Aves</li>
+		</ul>
 </ul>
 
