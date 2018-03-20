@@ -9,7 +9,6 @@ Ejercicios Java.
 <ul>
 	<li>Carrete</li>
 	<li>Camara Fotografica</li>
-	<li>Comportamiento [Carrete + Camara]</li>
 </ul>
 <h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-1">Practica 1</a></h3>
 <ul>
@@ -21,5 +20,6 @@ Ejercicios Java.
 	<li>Cilindro</li>
 	<li>Bombo</li>
 </ul>
-<h3>Practica 2</h3>
+
+<h3><a href="">Practica 2</a></h3>
 
