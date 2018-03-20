@@ -30,7 +30,7 @@ Ejercicios Java.
 	<li>CocheAcuatico</li>
 </ul>
 
-<h3><a href="">Practica 3</a></h3>
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-3">Practica 3</a></h3>
 <ul>
 	<li>Lista</li>
 	<li>Pila</li>
