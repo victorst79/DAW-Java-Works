@@ -5,6 +5,12 @@ Ejercicios Java.
 
 <h1>Indice</h1>
 
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-0">Practica 0</a></h3>
+<ul>
+	<li>Carrete</li>
+	<li>Camara Fotografica</li>
+	<li>Comportamiento [Carrete + Camara]</li>
+</ul>
 <h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-1">Practica 1</a></h3>
 <ul>
 	<li>Mate</li>
