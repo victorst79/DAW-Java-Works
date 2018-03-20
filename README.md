@@ -21,5 +21,12 @@ Ejercicios Java.
 	<li>Bombo</li>
 </ul>
 
-<h3><a href="">Practica 2</a></h3>
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-2">Practica 2</a></h3>
+<ul>
+	<li>Vehiculo</li>
+	<li>Coche</li>
+	<li>Avion</li>
+	<li>Sumergible</li>
+	<li>CocheAcuatico</li>
+</ul>
 
