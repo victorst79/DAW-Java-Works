@@ -50,12 +50,18 @@ Ejercicios Java.
 
 <h3><a href="">Practica 4</a></h3>
 <ul>
-	<h3>Interface01</h3>
-	<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface01.png">
-	
+	<li>
+		<h3>Interface01</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface01.png">
+	</li>
+
 	<hr>
 	
-	<h3>Interface02</h3>
-	<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface02.png">
+	<li>
+		<h3>Interface02</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface02.png">
+	</li>
+		
+		
 </ul>
 
