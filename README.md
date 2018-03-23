@@ -48,7 +48,7 @@ Ejercicios Java.
 		</ul>
 </ul>
 
-<h3><a href="">Practica 4</a></h3>
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-4">Practica 4</a></h3>
 <ul>
 	<li>
 		<h3>Interface01</h3>
