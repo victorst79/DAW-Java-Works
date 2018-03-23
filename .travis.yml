@@ -1,7 +1,5 @@
 lenguage: Java
 jdk:
   - oraclejdk8
-  - oraclejdk9
-  - openjdk7
 sudo: false
 install: true
