@@ -50,19 +50,6 @@ Ejercicios Java.
 
 <h3><a href="">Practica 4</a></h3>
 <ul>
-	<li><img src="img/Interface01.png"></li>
-	<li>Practica 2<img src="" alt=""></li>
-	<li>Practica 3<img src="" alt=""></li>
-	<li>Practica 4<img src="" alt=""></li>
-	<li>Practica 5<img src="" alt=""></li>
-	<li>Practica 6<img src="" alt=""></li>
-	<li>Practica 7<img src="" alt=""></li>
-	<li>Practica 8<img src="" alt=""></li>
-	<li>Practica 9<img src="" alt=""></li>
-	<li>Practica 10<img src="" alt=""></li>
-	<li>Practica 11<img src="" alt=""></li>
-	<li>Practica 12<img src="" alt=""></li>
-	<li>Practica 13<img src="" alt=""></li>
-	<li>Practica 14<img src="" alt=""></li>		
+		
 </ul>
 
