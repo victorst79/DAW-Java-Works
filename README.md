@@ -52,7 +52,7 @@ Ejercicios Java.
 <ul>
 	<li>
 		<h3>Interface01</h3>
-		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface01.png"><
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface01.png">
 	</li>	
 	<li>
 		<h3>Interface02</h3>
