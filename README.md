@@ -53,7 +53,7 @@ Ejercicios Java.
 	<h3>Interface01</h3>
 	<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface01.png">
 	
-	***
+	<hr>
 	
 	<h3>Interface02</h3>
 	<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface02.png">
