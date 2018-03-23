@@ -57,6 +57,18 @@ Ejercicios Java.
 	<li>
 		<h3>Interface02</h3>
 		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface02.png">
-	</li>		
+	</li>
+	<li>
+		<h3>Interface03</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface03.png">
+	</li>
+	<li>
+		<h3>Interface04</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface04.png">
+	</li>
+	<li>
+		<h3>Interface05</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface05.png">
+	</li>
 </ul>
 
