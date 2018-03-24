@@ -105,5 +105,12 @@ Ejercicios Java.
 		<h3>Interface11</h3>
 		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface11.png">
 	</li>
+	<li>
+		<h3>Interface12</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface12.png">
+	</li><li>
+		<h3>Interface13</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface13.png">
+	</li>
 </ul>
 
