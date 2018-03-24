@@ -90,9 +90,13 @@ Ejercicios Java.
 	<li>
 		<h3>Interface10</h3>
 		Haced un programa para calcular la nómina de un trabajador, utilizando el siguiente GUI, sabiendo que:
+		<br>
 		-El sueldo base, que se introducirá desde teclado, hay que incrementarlo en 30 euros por trienio
+		<br>
 		-Si es jefe de dpto. tiene un plus de 42 euros
+		<br>
 		-Si está casado tiene un plus de 60 euros
+		<br>
 		-Si tiene hijos, el sueldo se incrementa en 18 euros por hijo.
 		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface10.png">
 	</li>
