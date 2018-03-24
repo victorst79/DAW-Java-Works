@@ -98,6 +98,7 @@ Ejercicios Java.
 		-Si está casado tiene un plus de 60 euros
 		<br>
 		-Si tiene hijos, el sueldo se incrementa en 18 euros por hijo.
+		<br>
 		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/Interface10.png">
 	</li>
 </ul>
