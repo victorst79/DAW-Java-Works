@@ -123,3 +123,7 @@ Ejercicios Java.
 		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract5-03.png">
 	</li>
 </ul>
+
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-5">Practica 5</a></h3>
+
+
