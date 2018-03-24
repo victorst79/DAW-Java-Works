@@ -128,6 +128,3 @@ Ejercicios Java.
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract6.png">
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract6-01.png">
 
-
-
-
