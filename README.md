@@ -126,6 +126,7 @@ Ejercicios Java.
 
 <h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-6">Practica 6</a></h3>
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract6.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract6-01.png">
 
 
 
