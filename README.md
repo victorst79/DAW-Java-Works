@@ -108,3 +108,30 @@ Ejercicios Java.
 	</li>
 </ul>
 
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-5">Practica 5</a></h3>
+<ul>
+	<li>
+		<h3>Ejercicio 1</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract5-01.png">
+	</li>
+	<li>
+		<h3>Ejercicio 2</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract5-02.png">
+	</li>
+	<li>
+		<h3>Ejercicio 3</h3>
+		<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract5-03.png">
+	</li>
+</ul>
+
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-6">Practica 6</a></h3>
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract6.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract6-01.png">
+
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-7">Practica 7</a></h3>
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7.png">
+
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-7">Practica 7 - Extra</a></h3>
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7e.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7e01.png">
+
