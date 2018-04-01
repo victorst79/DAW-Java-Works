@@ -8,17 +8,21 @@
  *
  * @author medina
  */
-public class HiloCuenta2 extends javax.swing.JFrame {
+public class HiloCuenta2 extends javax.swing.JFrame{
     int desde, hasta;
-    Hilo hiloCuenta;
+    Thread hiloCuenta;
         
     public HiloCuenta2() {
         initComponents();
         setLocationRelativeTo(null);
         setSize(480, 200);
     }
+    
     class Hilo extends Thread {
-        public Hilo(String nombre) {super(nombre);}
+        public Hilo(String nombre) {
+            super(nombre);
+        }
+        
         public void run() {
             try{
             contar();

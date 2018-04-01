@@ -48,6 +48,7 @@ public class HiloCuenta extends javax.swing.JFrame implements Runnable{
             tfHasta.setText("" + hasta);
         }
     }    
+    
     public void nuevoHilo() {
         if(hiloCuenta==null) {
             hiloCuenta = new Thread(this);

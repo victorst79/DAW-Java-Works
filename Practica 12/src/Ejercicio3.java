@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author victo
  */
 public class Ejercicio3 extends javax.swing.JFrame implements Runnable{
-    int desde,hasta;
+    int num1, num2;
     Thread hilo1, hilo2;
     
     /**
@@ -51,8 +51,18 @@ public class Ejercicio3 extends javax.swing.JFrame implements Runnable{
         setResizable(false);
 
         bParar1.setText("Parar");
+        bParar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PararHilo1(evt);
+            }
+        });
 
         bReanudar1.setText("Reanudar");
+        bReanudar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReanudarHilo1(evt);
+            }
+        });
 
         bComenzar1.setText("Comenzar");
         bComenzar1.addActionListener(new java.awt.event.ActionListener() {
@@ -61,19 +71,34 @@ public class Ejercicio3 extends javax.swing.JFrame implements Runnable{
             }
         });
 
-        bSalir.setText("Salir");
+        bSalir.setText("Finalizar");
         bSalir.setToolTipText("");
         bSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Salir(evt);
+                FinalizarHilos(evt);
             }
         });
 
         bParar2.setText("Parar");
+        bParar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PararHilo2(evt);
+            }
+        });
 
         bReanudar2.setText("Reanudar");
+        bReanudar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReanudarHilo2(evt);
+            }
+        });
 
         bComenzar2.setText("Comenzar");
+        bComenzar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComienzoHilo2(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,27 +153,91 @@ public class Ejercicio3 extends javax.swing.JFrame implements Runnable{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public void contar() throws InterruptedException{
-        int num = Integer.parseInt( tHilo1.getText() );
-        for(int i=num; i<=100; i++) {
-            tHilo1.setText("" + i);
-            try{
-            Thread.sleep(1000);
-            } catch(InterruptedException e) {}
+    public void leerDatos() {
+        try{
+            num1 = Integer.parseInt(tHilo1.getText());
+        } catch(NumberFormatException e) {
+            num1 =1;
+            tHilo1.setText("" + num1);
+        }        
+    } 
+    
+    
+    public void leerDatosHilo2(){
+        try{
+            num2 = Integer.parseInt(tHilo2.getText());
+        } catch(NumberFormatException e) {
+            num2 = 100;
+            tHilo2.setText("" + num2);
         }
     }
     
-    public void descontar(){
-        
+    public void contar() throws InterruptedException{
+        leerDatos();
+        while (num1 <= 100 && Thread.currentThread() == hilo1) {            
+            tHilo1.setText("" + num1);
+            Thread.sleep(1000);
+            num1++;
+        }
+    }
+    
+    public void descontar() throws InterruptedException{
+        leerDatosHilo2();
+        while (num2 >= 0 && Thread.currentThread() == hilo2 ) {            
+            tHilo2.setText("" + num2);
+            Thread.sleep(1000);
+            num2--;
+        }
+    }
+    
+    public void run(){
+        if (Thread.currentThread() == hilo1) {
+            try {
+                contar();
+            } catch (InterruptedException e) {}
+        }else{
+            try {
+                descontar();
+            } catch (InterruptedException e) {}
+        }           
     }
     
     private void ComienzoHilo1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComienzoHilo1
-        
+        if (hilo1 == null) {
+            hilo1 = new Thread(this);
+            hilo1.start();
+        }
     }//GEN-LAST:event_ComienzoHilo1
 
-    private void Salir(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir
-        System.exit(0);
-    }//GEN-LAST:event_Salir
+    private void ComienzoHilo2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComienzoHilo2
+        if (hilo2 == null) {
+            hilo2 = new Thread(this);
+            hilo2.start();
+        }
+    }//GEN-LAST:event_ComienzoHilo2
+
+    private void PararHilo1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PararHilo1
+        hilo1.suspend();
+    }//GEN-LAST:event_PararHilo1
+
+    private void PararHilo2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PararHilo2
+        hilo2.suspend();
+    }//GEN-LAST:event_PararHilo2
+
+    private void ReanudarHilo1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReanudarHilo1
+        hilo1.resume();
+    }//GEN-LAST:event_ReanudarHilo1
+
+    private void ReanudarHilo2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReanudarHilo2
+        hilo2.resume();
+    }//GEN-LAST:event_ReanudarHilo2
+
+    private void FinalizarHilos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarHilos
+        hilo1 = null;
+        tHilo1.setText(null);
+        hilo2 = null;
+        tHilo2.setText(null);
+    }//GEN-LAST:event_FinalizarHilos
 
     /**
      * @param args the command line arguments
@@ -197,8 +286,5 @@ public class Ejercicio3 extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextField tHilo2;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
