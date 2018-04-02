@@ -6,7 +6,7 @@
 
 /**
  *
- * @author victo
+ * @author victor
  */
 public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
     
@@ -19,6 +19,7 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
     public Ejercicio5() {
         initComponents();
         setLocationRelativeTo(null);
+        contador = null;
     }
 
     /**

@@ -98,11 +98,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Parar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PararHilo1"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bReanudar1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reanudar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReanudarHilo1"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bComenzar1">
       <Properties>
@@ -114,27 +120,36 @@
     </Component>
     <Component class="javax.swing.JButton" name="bSalir">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
+        <Property name="text" type="java.lang.String" value="Finalizar"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Salir"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FinalizarHilos"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bParar2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Parar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PararHilo2"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bReanudar2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reanudar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReanudarHilo2"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bComenzar2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Comenzar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComienzoHilo2"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

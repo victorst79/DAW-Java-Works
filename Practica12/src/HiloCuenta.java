@@ -6,7 +6,7 @@
 
 /**
  *
- * @author medina
+ * @author victor
  */
 public class HiloCuenta extends javax.swing.JFrame implements Runnable{
     int desde, hasta;
