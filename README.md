@@ -137,7 +137,7 @@ Ejercicios Java.
 
 <h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-12">Practica 12</a></h3>
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7e01.png">
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7e01.png">
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7e01.png">
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7e01.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e03.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e04.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e05.png">
 
