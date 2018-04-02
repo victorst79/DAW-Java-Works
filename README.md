@@ -141,4 +141,5 @@ Ejercicios Java.
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e04.png">
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e05.png">
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e0501.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12Extra.png">
 
