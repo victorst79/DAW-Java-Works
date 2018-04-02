@@ -15,9 +15,11 @@ import java.awt.Font;
 public class Ejercicio4 extends javax.swing.JFrame implements Runnable{
     
     Thread hilo;
+    
     /**
      * Creates new form Prueba
      */
+    
     public Ejercicio4() {
         initComponents();
         setLocationRelativeTo(null);

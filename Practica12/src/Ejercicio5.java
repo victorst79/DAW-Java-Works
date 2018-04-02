@@ -19,7 +19,8 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
     public Ejercicio5() {
         initComponents();
         setLocationRelativeTo(null);
-        contador = null;
+        contador = new Thread(this);
+        contador.start();
     }
 
     /**
@@ -52,12 +53,6 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
         jLabel2.setText("Minutos");
 
         jLabel3.setText("Segundos");
-
-        tHora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tHoraActionPerformed(evt);
-            }
-        });
 
         bAceptarCambios.setText("Aceptar");
         bAceptarCambios.addActionListener(new java.awt.event.ActionListener() {
@@ -116,11 +111,6 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
 
         tReloj.setEditable(false);
         tReloj.setText("00:00:00");
-        tReloj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tRelojActionPerformed(evt);
-            }
-        });
 
         bResetear.setText("Resetear");
         bResetear.addActionListener(new java.awt.event.ActionListener() {
@@ -190,14 +180,6 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void tRelojActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRelojActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tRelojActionPerformed
-
-    private void tHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tHoraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tHoraActionPerformed
-
     private void PonerEnHora(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PonerEnHora
         dHora.setVisible(true);
         dHora.pack();
@@ -205,8 +187,6 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
         tHora.setText(null);
         tMinuto.setText(null);
         tSegundo.setText(null);
-        contador.suspend();
-        contador = null;
     }//GEN-LAST:event_PonerEnHora
 
     private void BotonCambios(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCambios
@@ -214,45 +194,40 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
         try{ 
             horas = Integer.parseInt( tHora.getText() );
         }catch(NumberFormatException e){
-            horas = 0;
+            horas = 00;
         }
         
         if (horas >= 24) {
-            horas = 0;
+            horas = 00;
         }
         
         try {
             minutos = Integer.parseInt( tMinuto.getText() );
         } catch (NumberFormatException e) {
-            minutos = 0;
+            minutos = 00;
         }
         
         if (minutos >= 60) {
-            minutos = 0;
+            minutos = 00;
         }
         
         try {
             segundos = Integer.parseInt( tSegundo.getText() );
         } catch (NumberFormatException e) {
-            segundos = 0;
+            segundos = 00;
         }
         
         if (segundos >= 60) {
-            segundos = 0;
+            segundos = 00;
         }
         
-        dHora.setVisible(false);
-        
-        if (contador == null) {
-            contador = new Thread(this);
-            contador.start();
-        }
-        
+        dHora.setVisible(false);        
     }//GEN-LAST:event_BotonCambios
 
     private void Resetear(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Resetear
-        contador.suspend();
-        contador = null;
+        horas = 0;
+        minutos = 0;
+        segundos = 0;
         tReloj.setText("00:00:00");
     }//GEN-LAST:event_Resetear
 
@@ -265,18 +240,17 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_Reanudar
     
     public void contar() throws InterruptedException{
-        for (int i = 0; i < 1000000000; i++) {
-            segundos++;
+        while(Thread.currentThread() == contador){
             Thread.sleep(1000);
-            
+            segundos++;
             if (segundos >= 60) {
-                segundos = 0;
+                segundos = 00;
                 minutos++;
                 if (minutos >= 60) {
-                    minutos = 0;
+                    minutos = 00;
                     horas++;
                     if (horas >= 24) {
-                        horas = 0;
+                        horas = 00;
                         horas++;
                     }
                 }
