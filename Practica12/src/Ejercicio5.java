@@ -11,6 +11,7 @@
 public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
     
     int horas,minutos,segundos;
+    String sHoras,sMinutos, sSegundos;
     Thread contador;
     
     /**
@@ -255,7 +256,10 @@ public class Ejercicio5 extends javax.swing.JFrame implements Runnable{
                     }
                 }
             }
-            tReloj.setText("" + horas + ":" + minutos + ":" + segundos);
+            sHoras = String.format("%02d",horas);
+            sMinutos = String.format("%02d",minutos);
+            sSegundos = String.format("%02d",segundos);
+            tReloj.setText(sHoras+":"+sMinutos+":"+sSegundos);
         }
     }
     

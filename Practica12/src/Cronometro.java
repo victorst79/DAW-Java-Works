@@ -17,6 +17,7 @@ public class Cronometro extends javax.swing.JFrame implements Runnable{
      * Creates new form Cronometro
      */
     int horas,minutos,segundos,msegundos;
+    String sHoras,sMinutos, sSegundos, sMsegundos;
     Thread cronometro;
     
     public Cronometro() {
@@ -132,7 +133,11 @@ public class Cronometro extends javax.swing.JFrame implements Runnable{
                     }
                 }
             }
-            lCronometro.setText(""+horas+":"+minutos+":"+segundos+":"+msegundos);
+            sHoras = String.format("%02d",horas);
+            sMinutos = String.format("%02d",minutos);
+            sSegundos = String.format("%02d",segundos);
+            sMsegundos = String.format("%02d",msegundos);
+            lCronometro.setText(sHoras+":"+sMinutos+":"+sSegundos+","+sMsegundos);
         }
     }
     
