@@ -90,18 +90,41 @@ public class VentanaAgenda extends javax.swing.JFrame {
         });
         getContentPane().add(tDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 210, -1));
 
+        cAgenda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CambioContacto(evt);
+            }
+        });
         getContentPane().add(cAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 210, -1));
 
         jLabel5.setText("Localidad");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+
+        tLocalidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tLocalidadActionPerformed(evt);
+            }
+        });
         getContentPane().add(tLocalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 210, -1));
 
         jLabel6.setText("E-Mail");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
+
+        tEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tEmailActionPerformed(evt);
+            }
+        });
         getContentPane().add(tEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 210, -1));
 
         jLabel7.setText("Telefono");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
+
+        tTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tTelefonoActionPerformed(evt);
+            }
+        });
         getContentPane().add(tTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 210, -1));
 
         jLabel8.setText("Edad");
@@ -109,6 +132,11 @@ public class VentanaAgenda extends javax.swing.JFrame {
         getContentPane().add(tEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 210, -1));
 
         bNuevo.setText("Nuevo");
+        bNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsertarContacto(evt);
+            }
+        });
         getContentPane().add(bNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, -1));
 
         bModificar.setText("Modificar");
@@ -139,12 +167,54 @@ public class VentanaAgenda extends javax.swing.JFrame {
     }
     
     private void tNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNombreActionPerformed
-        // TODO add your handling code here:
+        tDireccion.requestFocus();
     }//GEN-LAST:event_tNombreActionPerformed
 
     private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
-        // TODO add your handling code here:
+        tLocalidad.requestFocus();
     }//GEN-LAST:event_tDireccionActionPerformed
+
+    private void CambioContacto(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CambioContacto
+        String nom =  (String) cAgenda.getSelectedItem();
+        Contacto contacto = agenda.obtenerContacto(nom);
+        
+        // COMPROBAR QUE EL CONTACTO NO ESTE VACIO
+        if (contacto != null ) {
+            tNombre.setText(contacto.getNombre());
+            tDireccion.setText(contacto.getDireccion());
+            tLocalidad.setText(contacto.getLocalidad());
+            tEmail.setText(contacto.getMail());
+            tTelefono.setText(contacto.getTelefono());
+            tEdad.setText(""+contacto.getEdad());            
+        }
+        tNombre.requestFocus();
+    }//GEN-LAST:event_CambioContacto
+
+    private void tLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tLocalidadActionPerformed
+        tEmail.requestFocus();
+    }//GEN-LAST:event_tLocalidadActionPerformed
+
+    private void tEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEmailActionPerformed
+        tTelefono.requestFocus();
+    }//GEN-LAST:event_tEmailActionPerformed
+
+    private void tTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tTelefonoActionPerformed
+        tEdad.requestFocus();
+    }//GEN-LAST:event_tTelefonoActionPerformed
+
+    private void InsertarContacto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarContacto
+        String nombre = tNombre.getText();
+        String direccion = tDireccion.getText();
+        String localidad = tLocalidad.getText();
+        String correo = tEmail.getText();
+        String telefono = tTelefono.getText();
+        int edad = Integer.parseInt( tEdad.getText() );
+        
+        Contacto nuevoContacto = new Contacto(nombre,direccion,localidad,correo,telefono,edad);
+        agenda.insertarContacto(nuevoContacto);
+        cAgenda.removeAll();
+        rellenarListaDesplegable();
+    }//GEN-LAST:event_InsertarContacto
 
     /**
      * @param args the command line arguments

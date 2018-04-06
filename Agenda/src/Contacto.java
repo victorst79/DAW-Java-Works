@@ -8,6 +8,7 @@
  *
  * @author victor
  */
+// MODELO
 public class Contacto {
     private String nombre,direccion,localidad,telefono,mail;
     private int edad;
@@ -20,5 +21,29 @@ public class Contacto {
        mail = email;
        this.edad = edad;       
    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
       
 }
