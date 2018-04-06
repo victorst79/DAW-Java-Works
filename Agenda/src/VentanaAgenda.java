@@ -155,7 +155,7 @@ public class VentanaAgenda extends javax.swing.JFrame {
         ResultSet res = agenda.obtenerRegistros("contactos");
         try {
             if (res != null) {
-            cAgenda.removeAll();
+            cAgenda.removeAllItems();
             while (res.next()) {                
                 cAgenda.addItem(res.getString("nombre"));
             }
@@ -212,7 +212,7 @@ public class VentanaAgenda extends javax.swing.JFrame {
         
         Contacto nuevoContacto = new Contacto(nombre,direccion,localidad,correo,telefono,edad);
         agenda.insertarContacto(nuevoContacto);
-        cAgenda.removeAll();
+        
         rellenarListaDesplegable();
     }//GEN-LAST:event_InsertarContacto
 
