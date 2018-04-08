@@ -6,19 +6,44 @@
 
 /**
  *
- * @author victor
+ * @author Victor
  */
+// MODELO
 public class Contacto {
     private String nombre,direccion,localidad,telefono,mail;
     private int edad;
-   
-   public Contacto(String nom,String dir,String locald,String tlf,String email, int edad){
-       nombre = nom;
-       direccion = dir;
-       localidad = locald;
-       telefono = tlf;
-       mail = email;
-       this.edad = edad;       
-   }
-      
+    
+    public Contacto(String nom, String dir, String local, String telef, String email, int age){
+        nombre = nom;
+        direccion = dir;
+        localidad = local;
+        telefono = telef;
+        mail = email;
+        edad = age;        
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+    
 }
