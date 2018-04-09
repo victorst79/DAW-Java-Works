@@ -90,8 +90,8 @@ public class AgendaBD {
         String nombre = contacto.getNombre();
         String direccion = contacto.getDireccion();
         String localidad = contacto.getLocalidad();
-        String telefono = contacto.getLocalidad();
-        String correo = contacto.getLocalidad();
+        String telefono = contacto.getTelefono();
+        String correo = contacto.getMail();
         int edad = contacto.getEdad();
         
         //RESPUESTA DE UPDATES E INSERT INT
@@ -113,8 +113,8 @@ public class AgendaBD {
         String nombre = contacto.getNombre();
         String direccion = contacto.getDireccion();
         String localidad = contacto.getLocalidad();
-        String telefono = contacto.getLocalidad();
-        String correo = contacto.getLocalidad();
+        String telefono = contacto.getTelefono();
+        String correo = contacto.getMail();
         int edad = contacto.getEdad();
         
         //RESPUESTA DE UPDATES E INSERT INT

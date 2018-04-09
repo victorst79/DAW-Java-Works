@@ -258,7 +258,7 @@ public class VistaAgenda extends javax.swing.JFrame {
 
     private void borradoContacto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borradoContacto
               
-        if (cAgenda.getItemCount() >= 0) {
+        if (cAgenda.getItemCount() > 0) {
             String nombre = tNombre.getText();
             String direccion = tDireccion.getText();
             String localidad = tLocalidad.getText();
