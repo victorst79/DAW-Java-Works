@@ -86,10 +86,6 @@ public class AgendaBD {
         }
     }
     
-    public void guardarContacto(Contacto contacto){
-        
-    }
-    
     public void modificarContacto(Contacto contacto, String constante){
         String nombre = contacto.getNombre();
         String direccion = contacto.getDireccion();

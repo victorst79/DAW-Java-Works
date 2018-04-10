@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author Victor
@@ -16,12 +18,13 @@ public class VistaAgenda extends javax.swing.JFrame {
     
     AgendaBD agenda;
     Contacto contacto;
+    DefaultTableModel modelo = new DefaultTableModel();
     
     public VistaAgenda() {
         initComponents();
         setLocationRelativeTo(null);
         agenda = new AgendaBD();
-        rellenarListaDesplegable();
+        rellenarListaDesplegable();        
     }
 
     /**
@@ -37,6 +40,10 @@ public class VistaAgenda extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         bAceptarDialog = new javax.swing.JButton();
+        dVisualizacion = new javax.swing.JDialog();
+        bCerrarDialog = new javax.swing.JButton();
+        jVisualizar = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         cAgenda = new javax.swing.JComboBox<String>();
         jSeparator1 = new javax.swing.JSeparator();
@@ -76,6 +83,25 @@ public class VistaAgenda extends javax.swing.JFrame {
             }
         });
         dAviso.getContentPane().add(bAceptarDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+
+        dVisualizacion.setTitle("Todos Contactos");
+        dVisualizacion.setMinimumSize(new java.awt.Dimension(800, 400));
+        dVisualizacion.setPreferredSize(new java.awt.Dimension(800, 400));
+        dVisualizacion.setResizable(false);
+        dVisualizacion.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bCerrarDialog.setText("Aceptar");
+        bCerrarDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCerrarDialogActionPerformed(evt);
+            }
+        });
+        dVisualizacion.getContentPane().add(bCerrarDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 150, 30));
+
+        jTable2.setModel(modelo);
+        jVisualizar.setViewportView(jTable2);
+
+        dVisualizacion.getContentPane().add(jVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 990, 270));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agenda");
@@ -158,15 +184,15 @@ public class VistaAgenda extends javax.swing.JFrame {
         bGuardar.setText("Guardar");
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoContacto(evt);
+                guardarContacto(evt);
             }
         });
         getContentPane().add(bGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
-        bModificar.setText("Modificar");
+        bModificar.setText("Borrar");
         bModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarContacto(evt);
+                borrarContacto(evt);
             }
         });
         getContentPane().add(bModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
@@ -174,10 +200,10 @@ public class VistaAgenda extends javax.swing.JFrame {
         bVisualizar.setText("Visualizar Contactos");
         bVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borradoContacto(evt);
+                visualizarContactos(evt);
             }
         });
-        getContentPane().add(bVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
+        getContentPane().add(bVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
 
         bSalir.setText("Salir");
         bSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -230,36 +256,41 @@ public class VistaAgenda extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_salirPrograma
 
-    private void nuevoContacto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoContacto
-        String nombre = tNombre.getText();
-        String direccion = tDireccion.getText();
-        String localidad = tLocalidad.getText();
-        String telefono = tTelefono.getText();
-        String correo = tEmail.getText();
-        int edad = Integer.parseInt(tEdad.getText());
+    private void guardarContacto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarContacto
+        Contacto comparador = agenda.obtenerContacto(tNombre.getText());
+        String nombreComparador = tNombre.getText();
         
-        contacto = new Contacto(nombre, direccion, localidad, telefono, correo, edad);
-        agenda.creacionContacto(contacto);
+        if (comparador != null) {
+            System.out.println("EXISTE EL CONTACTO, PROCEDIMIENTO DE ACTUALIZACION");
+            String nombre = tNombre.getText();
+            String direccion = tDireccion.getText();
+            String localidad = tLocalidad.getText();
+            String telefono = tTelefono.getText();
+            String correo = tEmail.getText();
+            int edad = Integer.parseInt(tEdad.getText());
         
-        rellenarListaDesplegable();
-    }//GEN-LAST:event_nuevoContacto
+            contacto = new Contacto(nombre, direccion, localidad, telefono, correo, edad);
+            agenda.modificarContacto(contacto, (String) cAgenda.getSelectedItem());
+        
+            rellenarListaDesplegable();
+        } else{
+            System.out.println("CONTACTO NO EXISTENTE, CREACION DE CONTACTO");
+            String nombre = tNombre.getText();
+            String direccion = tDireccion.getText();
+            String localidad = tLocalidad.getText();
+            String telefono = tTelefono.getText();
+            String correo = tEmail.getText();
+            int edad = Integer.parseInt(tEdad.getText());
 
-    private void modificarContacto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarContacto
-        String nombre = tNombre.getText();
-        String direccion = tDireccion.getText();
-        String localidad = tLocalidad.getText();
-        String telefono = tTelefono.getText();
-        String correo = tEmail.getText();
-        int edad = Integer.parseInt(tEdad.getText());
-        
-        contacto = new Contacto(nombre, direccion, localidad, telefono, correo, edad);
-        agenda.modificarContacto(contacto, (String) cAgenda.getSelectedItem());
-        
-        rellenarListaDesplegable();
-    }//GEN-LAST:event_modificarContacto
+            contacto = new Contacto(nombre, direccion, localidad, telefono, correo, edad);
+            agenda.creacionContacto(contacto);
 
-    private void borradoContacto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borradoContacto
-              
+            rellenarListaDesplegable();
+        }
+        
+    }//GEN-LAST:event_guardarContacto
+
+    private void borrarContacto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarContacto
         if (cAgenda.getItemCount() > 0) {
             String nombre = tNombre.getText();
             String direccion = tDireccion.getText();
@@ -275,11 +306,22 @@ public class VistaAgenda extends javax.swing.JFrame {
         }else{
             dAviso.setVisible(true);
         }
-    }//GEN-LAST:event_borradoContacto
+    }//GEN-LAST:event_borrarContacto
+
+    private void visualizarContactos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarContactos
+        
+        for (int i = 0; i < cAgenda.getItemCount(); i++) {
+            
+        }
+    }//GEN-LAST:event_visualizarContactos
 
     private void cerrarDialog(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarDialog
         dAviso.setVisible(false);
     }//GEN-LAST:event_cerrarDialog
+
+    private void bCerrarDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarDialogActionPerformed
+        dVisualizacion.setVisible(false);
+    }//GEN-LAST:event_bCerrarDialogActionPerformed
     
     public void rellenarListaDesplegable(){
         ResultSet res = agenda.obtenerRegistros("contactos");
@@ -333,12 +375,14 @@ public class VistaAgenda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAceptarDialog;
+    private javax.swing.JButton bCerrarDialog;
     private javax.swing.JButton bGuardar;
     private javax.swing.JButton bModificar;
     private javax.swing.JButton bSalir;
     private javax.swing.JButton bVisualizar;
     private javax.swing.JComboBox<String> cAgenda;
     private javax.swing.JDialog dAviso;
+    private javax.swing.JDialog dVisualizacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -350,6 +394,8 @@ public class VistaAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jVisualizar;
     private javax.swing.JTextField tDireccion;
     private javax.swing.JTextField tEdad;
     private javax.swing.JTextField tEmail;
