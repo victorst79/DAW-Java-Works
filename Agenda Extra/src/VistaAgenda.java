@@ -45,7 +45,7 @@ public class VistaAgenda extends javax.swing.JFrame {
         jVisualizar = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        cAgenda = new javax.swing.JComboBox<String>();
+        cAgenda = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         tNombre = new javax.swing.JTextField();
@@ -96,12 +96,12 @@ public class VistaAgenda extends javax.swing.JFrame {
                 bCerrarDialogActionPerformed(evt);
             }
         });
-        dVisualizacion.getContentPane().add(bCerrarDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 150, 30));
+        dVisualizacion.getContentPane().add(bCerrarDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 150, 30));
 
         jTable2.setModel(modelo);
         jVisualizar.setViewportView(jTable2);
 
-        dVisualizacion.getContentPane().add(jVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 990, 270));
+        dVisualizacion.getContentPane().add(jVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 690, 270));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agenda");
@@ -309,10 +309,24 @@ public class VistaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarContacto
 
     private void visualizarContactos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarContactos
+        modelo.setColumnCount(0);
+        modelo.setRowCount(0);
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Localidad");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo");
+        modelo.addColumn("Edad");
+        Contacto contacto_rellenar;
         
         for (int i = 0; i < cAgenda.getItemCount(); i++) {
+            contacto_rellenar = agenda.obtenerContacto(cAgenda.getItemAt(i));
+            modelo.addRow(new Object[]{contacto_rellenar.getNombre(),contacto_rellenar.getDireccion(),contacto_rellenar.getLocalidad(),contacto_rellenar.getTelefono(),
+            contacto_rellenar.getMail(),contacto_rellenar.getEdad()});
             
         }
+        dVisualizacion.setVisible(true);
+        dVisualizacion.setLocationRelativeTo(this);
     }//GEN-LAST:event_visualizarContactos
 
     private void cerrarDialog(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarDialog
