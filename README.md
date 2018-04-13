@@ -135,14 +135,6 @@ Ejercicios Java.
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7e.png">
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract7e01.png">
 
-<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-12">Practica 12</a></h3>
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e02.png">
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e03.png">
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e04.png">
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e05.png">
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e0501.png">
-<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12eExtra.png">
-
 <h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Agenda">Agenda [Practica 7 + SQL]</a></h3>
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/practAgenda.png">
 
@@ -150,3 +142,13 @@ Ejercicios Java.
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/practAgenda01.png">
 <img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/practAgenda02.png">
 
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-8">Practica 8</a></h3>
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract8.png">
+
+<h3><a href="https://github.com/victorst79/DAW-Java-Works/wiki/Practica-12">Practica 12</a></h3>
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e02.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e03.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e04.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e05.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12e0501.png">
+<img src="https://raw.githubusercontent.com/victorst79/DAW-Java-Works/master/img/pract12eExtra.png">
