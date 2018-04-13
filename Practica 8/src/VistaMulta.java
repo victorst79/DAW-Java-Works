@@ -92,9 +92,19 @@ public class VistaMulta extends javax.swing.JFrame {
 
         jButton1.setText("Consultar");
         jButton1.setToolTipText("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarConsulta(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 520, 100, -1));
 
         jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirApp(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, 100, -1));
 
         pack();
@@ -102,8 +112,35 @@ public class VistaMulta extends javax.swing.JFrame {
 
     private void datosCoche(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_datosCoche
         String nombre = (String) cConductores.getSelectedItem();
-        Coche automovil = new Coche(nombre);
+        Coche auto = control.obtenerCoche(nombre);
+        
+        if (auto != null) {
+            tCoche.setText(auto.getCoche());
+            tMatricula.setText(auto.getMatricula());
+        }
     }//GEN-LAST:event_datosCoche
+
+    private void mostrarConsulta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarConsulta
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+        modelo.addColumn("Infraccion");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Penalizacion");
+        
+        ResultSet resultado = control.obtenerInfraccion((String) cConductores.getSelectedItem());
+                
+        try {            
+            while (resultado.next()) {
+                modelo.addRow(new Object[]{resultado.getString("infraccion"),resultado.getString("fecha"),resultado.getInt("penalizacion")});                
+            }
+        } catch (SQLException e) {
+            System.out.println("FALLO mostrarConsulta()");
+        }
+    }//GEN-LAST:event_mostrarConsulta
+
+    private void salirApp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirApp
+        System.exit(0);
+    }//GEN-LAST:event_salirApp
 
     /**
      * @param args the command line arguments
@@ -119,6 +156,7 @@ public class VistaMulta extends javax.swing.JFrame {
                 }
             }
         } catch (SQLException e) {
+            System.out.println("FALLO rellenarLista()");
         }
     }
     

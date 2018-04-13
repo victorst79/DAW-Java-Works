@@ -41,7 +41,7 @@ public class Controlador {
     }
     
     public Coche obtenerCoche(String valor){
-        String sentenciaSQL = "SELECT * FROM Coches WHERE nombre = "+ valor;
+        String sentenciaSQL = "SELECT * FROM Coches WHERE nombre = '"+ valor+"'";
         System.out.println(sentenciaSQL);
         
         try {
@@ -63,5 +63,22 @@ public class Controlador {
             return null;
         }
         return automovil;
+    }
+    
+    public ResultSet obtenerInfraccion(String infractor){
+        String sentenciaSQL = "SELECT infracciones.infraccion, multas.fecha, infracciones.penalizacion "
+                + "FROM coches, infracciones, multas "
+                + "WHERE  infracciones.codigoInfraccion = multas.codigoInfraccion "
+                + "AND coches.codigo = multas.codigoCoche "
+                + "AND coches.nombre = '"+infractor+"'";
+        System.out.println(sentenciaSQL);
+        
+        try {
+            sentencia = conexion.createStatement();
+            return resultado = sentencia.executeQuery(sentenciaSQL); 
+        } catch (SQLException e) {
+            System.out.println("FALLO obtenerInfraccion()");
+            return null;
+        }
     }
 }
