@@ -1,6 +1,7 @@
 
 import java.sql.ResultSet;
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,6 +20,7 @@ public class VistaConsumo extends javax.swing.JFrame {
      */
     
     Controlador control;
+    DefaultTableModel modelo = new DefaultTableModel();
     
     public VistaConsumo() {
         control = new Controlador();
@@ -44,7 +46,7 @@ public class VistaConsumo extends javax.swing.JFrame {
         bAceptar = new javax.swing.JButton();
         bSalir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consumo realizado por una barra");
@@ -62,17 +64,7 @@ public class VistaConsumo extends javax.swing.JFrame {
         jLabel2.setText("Fecha");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jTable1.setModel(modelo);
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 530, 240));
@@ -98,16 +90,35 @@ public class VistaConsumo extends javax.swing.JFrame {
         jLabel3.setText("Total Importe");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel4.setText("0");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, -1, -1));
+        lResultado.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lResultado.setForeground(new java.awt.Color(204, 0, 0));
+        lResultado.setText("0");
+        getContentPane().add(lResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, -1, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void rellenarTabla(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rellenarTabla
+        modelo.setColumnCount(0);
+        modelo.setRowCount(0);
+        modelo.addColumn("Articulos");
+        modelo.addColumn("Unidades");
+        modelo.addColumn("PVP");
+        modelo.addColumn("Importe");
         
+        ResultSet resultado = control.getDatosTabla( (String) cBarra.getSelectedItem(), tFecha.getText() );
+        float total = 0;
+        
+        try {
+            while (resultado.next()) {
+                float importe = resultado.getInt("unidades") * resultado.getFloat("pvp");
+                modelo.addRow(new Object[]{resultado.getString("articulo"), resultado.getInt("unidades"), resultado.getFloat("pvp"), importe});
+                total+=importe;
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo rellenado de tabla");
+        }
+        lResultado.setText(""+total);
     }//GEN-LAST:event_rellenarTabla
 
     private void salir(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir
@@ -170,9 +181,9 @@ public class VistaConsumo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lResultado;
     private javax.swing.JTextField tFecha;
     // End of variables declaration//GEN-END:variables
 }
