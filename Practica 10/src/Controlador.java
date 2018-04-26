@@ -38,4 +38,10 @@ public class Controlador {
             return null;
         }
     }
+    
+    public ResultSet obtenerPartido(){
+        String sentenciaSQL = "SELECT * FROM ";
+        // REVISAR ESTA PARTE
+        return null;
+    }
 }

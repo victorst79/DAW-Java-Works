@@ -24,6 +24,7 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         control  = new Controlador();
         modelo = new DefaultTableModel();
         initComponents();
+        setLocationRelativeTo(null);
         rellenarJornada();
     }
 
