@@ -26,6 +26,11 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         rellenarJornada();
+        rellenarPartido();
+        datosPartido();
+        modelo.addColumn("Canastas de 1");
+        modelo.addColumn("Canastas de 2");
+        modelo.addColumn("Canastas de 3");
     }
 
     /**
@@ -65,12 +70,22 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         jLabel1.setText("Jornada");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
+        cJornada.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cambioJornada(evt);
+            }
+        });
         getContentPane().add(cJornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Partido");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
 
+        cPartido.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cambioPartido(evt);
+            }
+        });
         getContentPane().add(cPartido, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 140, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -83,11 +98,17 @@ public class VistaEstadisticas extends javax.swing.JFrame {
 
         jLabel5.setText("Local");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+
+        tFecha.setEditable(false);
         getContentPane().add(tFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 130, -1));
+
+        tLocal.setEditable(false);
         getContentPane().add(tLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 130, -1));
 
         jLabel6.setText("Visitante");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
+
+        tVisitante.setEditable(false);
         getContentPane().add(tVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 120, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 470, 20));
 
@@ -116,6 +137,14 @@ public class VistaEstadisticas extends javax.swing.JFrame {
     private void salirSistema(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirSistema
         System.exit(0);
     }//GEN-LAST:event_salirSistema
+
+    private void cambioJornada(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cambioJornada
+        datosPartido();
+    }//GEN-LAST:event_cambioJornada
+
+    private void cambioPartido(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cambioPartido
+        datosPartido();
+    }//GEN-LAST:event_cambioPartido
     
     private void rellenarJornada(){
         ResultSet resultado = control.obtenerJornada();
@@ -128,6 +157,35 @@ public class VistaEstadisticas extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
             System.out.println("Fallo rellenarJornada");
+        }
+    }
+    
+    private void rellenarPartido(){
+        ResultSet resultado = control.obtenerPartido();
+        
+        try {
+            if (resultado != null) {
+                cPartido.removeAllItems();
+                while (resultado.next()) {                    
+                    cPartido.addItem(resultado.getString("codigoPartido"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo rellenarPartido");
+        }
+    }
+    
+    private void datosPartido(){
+        ResultSet resultado = control.datosPartido((String) cJornada.getSelectedItem(),(String) cPartido.getSelectedItem());
+        
+        try {
+            if (resultado != null) {
+                tFecha.setText(resultado.getString("fecha"));
+                tLocal.setText(resultado.getString("codigoEquipo1"));
+                tVisitante.setText(resultado.getString("codigoEquipo2"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo datosPartido");
         }
     }
     

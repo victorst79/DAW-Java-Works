@@ -40,8 +40,34 @@ public class Controlador {
     }
     
     public ResultSet obtenerPartido(){
-        String sentenciaSQL = "SELECT * FROM ";
-        // REVISAR ESTA PARTE
-        return null;
+        String sentenciaSQL = "SELECT codigoPartido FROM partidos GROUP BY codigoPartido";
+        System.out.println(sentenciaSQL);
+        
+        try {
+            sentencia = conexion.createStatement();
+            return resultado = sentencia.executeQuery(sentenciaSQL);
+        } catch (SQLException e) {
+            System.out.println("Fallo obtenerPartido()");
+            return null;
+        }
     }
+    
+    public ResultSet datosPartido(String jornada, String partido){
+        String sentenciaSQL = "SELECT jornadas.fecha, partidos.codigoEquipo1, partidos.codigoEquipo2 " +
+                                "FROM jornadas JOIN partidos " +
+                                "ON partidos.jornada = jornadas.jornada " +
+                                "AND jornadas.jornada = '"+ jornada +"' " +
+                                "AND partidos.codigoPartido = '"+ partido +"'";
+        System.out.println(sentenciaSQL);
+        
+        try {
+            sentencia = conexion.createStatement();
+            return resultado = sentencia.executeQuery(sentenciaSQL);
+        } catch (SQLException e) {
+            System.out.println("Fallo datosPartido");
+            return null;
+        }
+    }
+    
+    
 }
