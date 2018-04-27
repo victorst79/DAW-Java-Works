@@ -43,9 +43,7 @@ public class VistaEstadisticas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        cJornada = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        cPartido = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -60,6 +58,8 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cJornada = new java.awt.Choice();
+        cPartido = new java.awt.Choice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Estadisticas del partido");
@@ -70,23 +70,9 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         jLabel1.setText("Jornada");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
-        cJornada.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cambioJornada(evt);
-            }
-        });
-        getContentPane().add(cJornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 140, -1));
-
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Partido");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
-
-        cPartido.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cambioPartido(evt);
-            }
-        });
-        getContentPane().add(cPartido, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 140, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Datos Partido");
@@ -131,6 +117,20 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, 100, -1));
 
+        cJornada.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cambioJornada(evt);
+            }
+        });
+        getContentPane().add(cJornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 140, -1));
+
+        cPartido.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rellenarPartido(evt);
+            }
+        });
+        getContentPane().add(cPartido, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 140, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -139,18 +139,19 @@ public class VistaEstadisticas extends javax.swing.JFrame {
     }//GEN-LAST:event_salirSistema
 
     private void cambioJornada(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cambioJornada
-        datosPartido();
+        rellenarPartido();
     }//GEN-LAST:event_cambioJornada
 
-    private void cambioPartido(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cambioPartido
+    private void rellenarPartido(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rellenarPartido
         datosPartido();
-    }//GEN-LAST:event_cambioPartido
+        rellenarTablaCanastas();
+    }//GEN-LAST:event_rellenarPartido
     
     private void rellenarJornada(){
         ResultSet resultado = control.obtenerJornada();
         try {
             if (resultado != null) {
-                cJornada.removeAllItems();
+                cJornada.removeAll();
                 while (resultado.next()) {                    
                     cJornada.addItem( resultado.getString("jornada") );
                 }
@@ -160,12 +161,13 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         }
     }
     
+    // REFERENCIA A CHOICE PARTIDO
     private void rellenarPartido(){
-        ResultSet resultado = control.obtenerPartido();
+        ResultSet resultado = control.obtenerPartido((String) cJornada.getSelectedItem());
         
         try {
             if (resultado != null) {
-                cPartido.removeAllItems();
+                cPartido.removeAll();
                 while (resultado.next()) {                    
                     cPartido.addItem(resultado.getString("codigoPartido"));
                 }
@@ -175,17 +177,44 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         }
     }
     
+    // REFERENCIA A DATOS PARTIDOS TEXTFIELD
     private void datosPartido(){
         ResultSet resultado = control.datosPartido((String) cJornada.getSelectedItem(),(String) cPartido.getSelectedItem());
-        
         try {
+            ResultSet resultado2 = control.cambioEquipo(resultado.getString("codigoEquipo1"));
+            ResultSet resultado3 = control.cambioEquipo(resultado.getString("codigoEquipo2"));
             if (resultado != null) {
                 tFecha.setText(resultado.getString("fecha"));
-                tLocal.setText(resultado.getString("codigoEquipo1"));
-                tVisitante.setText(resultado.getString("codigoEquipo2"));
+                tLocal.setText(resultado2.getString("nombre"));
+                tVisitante.setText(resultado3.getString("nombre"));
+            }else{
+                System.out.println("Consulta Vacia");
             }
         } catch (SQLException e) {
             System.out.println("Fallo datosPartido");
+        }
+    }
+    
+    public void rellenarTablaCanastas(){
+        modelo.setRowCount(0);
+        ResultSet resultado1 = control.obtenerCanastas(cJornada.getSelectedItem(), cPartido.getSelectedItem(), tLocal.getText());
+        ResultSet resultado2 = control.obtenerCanastas(cJornada.getSelectedItem(), cPartido.getSelectedItem(), tVisitante.getText());
+        
+        try {
+            if (resultado1 != null && resultado2 != null) {
+                // LOCAL
+                float canastas1 = ( resultado1.getFloat("canastas1") / resultado1.getFloat("intentos1") ) *100;
+                float canastas2 = ( resultado1.getFloat("canastas2") / resultado1.getFloat("intentos2") ) *100;
+                float canastas3 = ( resultado1.getFloat("canastas3") / resultado1.getFloat("intentos3") ) *100;
+                modelo.addRow(new Object[]{canastas1,canastas2,canastas3});
+                // VISITANTE
+                float canastas12 = ( resultado2.getFloat("canastas1") / resultado2.getFloat("intentos1") ) *100;
+                float canastas22 = ( resultado2.getFloat("canastas2") / resultado2.getFloat("intentos2") ) *100;
+                float canastas32 = ( resultado2.getFloat("canastas3") / resultado2.getFloat("intentos3") ) *100;
+                modelo.addRow(new Object[]{canastas12,canastas22,canastas32});
+               
+            }
+        } catch (SQLException e) {
         }
     }
     
@@ -225,8 +254,8 @@ public class VistaEstadisticas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cJornada;
-    private javax.swing.JComboBox cPartido;
+    private java.awt.Choice cJornada;
+    private java.awt.Choice cPartido;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
