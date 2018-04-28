@@ -206,12 +206,12 @@ public class VistaEstadisticas extends javax.swing.JFrame {
                 float canastas1 = ( resultado1.getFloat("canastas1") / resultado1.getFloat("intentos1") ) *100;
                 float canastas2 = ( resultado1.getFloat("canastas2") / resultado1.getFloat("intentos2") ) *100;
                 float canastas3 = ( resultado1.getFloat("canastas3") / resultado1.getFloat("intentos3") ) *100;
-                modelo.addRow(new Object[]{canastas1,canastas2,canastas3});
+                modelo.addRow(new Object[]{""+(Math.round(canastas1 * 100d)/100d)+" %",""+(Math.round(canastas2 * 100d)/100d)+" %",""+(Math.round(canastas3 * 100d)/100d)+" %"});
                 // VISITANTE
                 float canastas12 = ( resultado2.getFloat("canastas1") / resultado2.getFloat("intentos1") ) *100;
                 float canastas22 = ( resultado2.getFloat("canastas2") / resultado2.getFloat("intentos2") ) *100;
                 float canastas32 = ( resultado2.getFloat("canastas3") / resultado2.getFloat("intentos3") ) *100;
-                modelo.addRow(new Object[]{canastas12,canastas22,canastas32});
+                modelo.addRow(new Object[]{""+(Math.round(canastas12 * 100d)/100d)+" %",""+(Math.round(canastas22 * 100d)/100d)+" %",""+(Math.round(canastas32 * 100d)/100d)+" %"});
                
             }
         } catch (SQLException e) {
