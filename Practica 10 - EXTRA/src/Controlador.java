@@ -113,4 +113,53 @@ public class Controlador {
         }
     }
     
+   public ResultSet obtenerLocal(String jornada){
+       String sentenciaSQL = "SELECT equipos.nombre " +
+                                "FROM partidos, equipos " +
+                                "WHERE partidos.codigoEquipo1 = equipos.codigoEquipo " +
+                                "AND partidos.jornada = '"+jornada+"'";
+       System.out.println(sentenciaSQL);
+       
+       try {
+           sentencia = conexion.createStatement();
+           return resultado = sentencia.executeQuery(sentenciaSQL);
+       } catch (SQLException e) {
+           System.out.println("Fallo obtener equipo Local");
+           return null;
+       }
+   }
+   
+   public ResultSet obetenerVisitante(String jornada){
+       String sentenciaSQL = "SELECT equipos.nombre " +
+                                "FROM partidos, equipos " +
+                                "WHERE partidos.codigoEquipo2 = equipos.codigoEquipo " +
+                                "AND partidos.jornada = '"+jornada+"'";
+       System.out.println(sentenciaSQL);
+       
+       try {
+           sentencia = conexion.createStatement();
+           return resultado = sentencia.executeQuery(sentenciaSQL);
+       } catch (SQLException e) {
+           System.out.println("Fallo obtener equipo Visitante");
+           return null;
+       }
+   }
+   
+   public ResultSet obtenerEstadisticas(String equipo, String jornada){
+       String sentenciaSQL = "SELECT puntuaciones.codigoEquipo, puntuaciones.intentos1, puntuaciones.canastas1, puntuaciones.intentos2, puntuaciones.canastas2, puntuaciones.intentos3, puntuaciones.canastas3 " +
+                                "FROM puntuaciones, equipos " +
+                                "WHERE equipos.codigoEquipo = puntuaciones.codigoEquipo " +
+                                "AND equipos.nombre = '"+equipo+"' " +
+                                "AND puntuaciones.codigoJornada = '"+jornada+"'";
+       System.out.println(sentenciaSQL);
+       
+       try {
+           sentencia = conexion.createStatement();
+           return resultado = sentencia.executeQuery(sentenciaSQL);
+       } catch (SQLException e) {
+           System.out.println("Fallo obtenerEstadisticas");
+           return null;
+       }
+   }
+   
 }

@@ -95,6 +95,11 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         getContentPane().add(cJornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 140, -1));
 
         jButton2.setText("Aceptar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rellenadoDatos(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 100, -1));
 
         jTable1.setModel(modelo);
@@ -118,6 +123,12 @@ public class VistaEstadisticas extends javax.swing.JFrame {
     private void cambioJornada(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cambioJornada
         rellenarFecha();
     }//GEN-LAST:event_cambioJornada
+
+    private void rellenadoDatos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rellenadoDatos
+        modelo.setRowCount(0);
+        modelo2.setRowCount(0);
+        rellenarTabla();
+    }//GEN-LAST:event_rellenadoDatos
     
     private void rellenarJornada(){
         ResultSet resultado = control.obtenerJornada();
@@ -145,8 +156,34 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         }
     }
     
-    private void rellenarTablas(){
+    private void rellenarTabla(){
+        ResultSet resultado1 = control.obtenerLocal(cJornada.getSelectedItem());
+        ResultSet resultado2 = control.obetenerVisitante(cJornada.getSelectedItem());
         
+        try {
+            if (resultado1 != null && resultado2 != null) {
+                ResultSet datos1, datos2;
+                float canastas1, canastas2, canastas3;
+                
+                while (resultado1.next()) {
+                    datos1 = control.obtenerEstadisticas(resultado1.getString("nombre"), cJornada.getSelectedItem());
+                    canastas1 = ( datos1.getFloat("canastas1") / datos1.getFloat("intentos1") ) * 100;
+                    canastas2 = ( datos1.getFloat("canastas2") / datos1.getFloat("intentos2") ) * 100;
+                    canastas3 = ( datos1.getFloat("canastas3") / datos1.getFloat("intentos3") ) * 100;
+                    modelo.addRow(new Object[]{resultado1.getString("nombre"),""+(Math.round(canastas1 * 100d)/100d)+" %",""+(Math.round(canastas2 * 100d)/100d)+" %",""+(Math.round(canastas3 * 100d)/100d)+" %"});                    
+                }
+                
+                while (resultado2.next()) {
+                    datos2 = control.obtenerEstadisticas(resultado2.getString("nombre"), cJornada.getSelectedItem());
+                    canastas1 = ( datos2.getFloat("canastas1") / datos2.getFloat("intentos1") ) * 100;
+                    canastas2 = ( datos2.getFloat("canastas2") / datos2.getFloat("intentos2") ) * 100;
+                    canastas3 = ( datos2.getFloat("canastas3") / datos2.getFloat("intentos3") ) * 100;
+                    modelo2.addRow(new Object[]{resultado2.getString("nombre"),""+(Math.round(canastas1 * 100d)/100d)+" %",""+(Math.round(canastas2 * 100d)/100d)+" %",""+(Math.round(canastas3 * 100d)/100d)+" %"});                    
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo rellenar Tabla");
+        }
     }
     
     /**
