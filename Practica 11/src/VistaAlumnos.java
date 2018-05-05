@@ -109,11 +109,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         jLabel6.setText("Alumnos Candidatos");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
 
-        lCandidatos.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        lCandidatos.setModel(modelo);
         jScrollPane1.setViewportView(lCandidatos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 320, 190));
@@ -150,11 +146,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         });
         getContentPane().add(b4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 80, -1));
 
-        lSeleccionados.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        lSeleccionados.setModel(modelo2);
         jScrollPane2.setViewportView(lSeleccionados);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 320, 190));
