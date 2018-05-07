@@ -1,3 +1,9 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,9 +19,21 @@ public class VistaAlumnos extends javax.swing.JFrame {
     /**
      * Creates new form VistaAlumnos
      */
+    DefaultListModel modelo,modelo2;
+    DefaultTableModel modelo3;
+    Controlador control;
+    
     public VistaAlumnos() {
+        control = new Controlador();
+        modelo = new DefaultListModel();
+        modelo2 = new DefaultListModel();
+        modelo3 = new DefaultTableModel();
         initComponents();
+        rellenenarCurso();
+        rellenarEvaluacion();
         setLocationRelativeTo(null);
+        modelo3.addColumn("Alumnos");
+        modelo3.addColumn("Asignatura");
     }
 
     /**
@@ -89,6 +107,12 @@ public class VistaAlumnos extends javax.swing.JFrame {
 
         jLabel4.setText("Asignatura :");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, -1, -1));
+
+        cCurso.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rellenarAsignatura(evt);
+            }
+        });
         getContentPane().add(cCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 140, -1));
         getContentPane().add(cEvaluacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 140, -1));
         getContentPane().add(cAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 150, -1));
@@ -96,7 +120,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         bAplicar.setText("Aplicar");
         bAplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAplicarActionPerformed(evt);
+                mostrarAlumnos(evt);
             }
         });
         getContentPane().add(bAplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 120, -1));
@@ -115,6 +139,11 @@ public class VistaAlumnos extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 320, 190));
 
         b1.setText("> >");
+        b1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasarSeleccionado(evt);
+            }
+        });
         getContentPane().add(b1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 80, -1));
 
         b2.setText("> |");
@@ -166,17 +195,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, -1, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, 840, 10));
 
-        tEvaluar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        tEvaluar.setModel(modelo3);
         jScrollPane4.setViewportView(tEvaluar);
 
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, 620, 120));
@@ -195,9 +214,22 @@ public class VistaAlumnos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAplicarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bAplicarActionPerformed
+    private void mostrarAlumnos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarAlumnos
+        modelo.removeAllElements();
+        ResultSet resultado = control.obtenerAlumnos(cCurso.getSelectedItem());
+        try {
+            if (resultado != null) {
+                while (resultado.next()) {                    
+                    modelo.addElement(resultado.getString("nombre"));
+                }
+            }else{
+                System.out.println("Objeto vacio");
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo mostrarAlumnos");
+        }
+        
+    }//GEN-LAST:event_mostrarAlumnos
 
     private void b4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4ActionPerformed
         // TODO add your handling code here:
@@ -219,6 +251,61 @@ public class VistaAlumnos extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_salirApp
 
+    private void rellenarAsignatura(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rellenarAsignatura
+        cAsignatura.removeAll();
+        ResultSet resultado = control.obtenerAsignaturas(cCurso.getSelectedItem());
+        try {
+            if (resultado != null) {
+                while (resultado.next()) {                    
+                    cAsignatura.addItem(resultado.getString("asignatura"));
+                }
+            }else{
+                System.out.println("Objeto vacio");
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo rellenarAsignatura");
+        }
+    }//GEN-LAST:event_rellenarAsignatura
+
+    private void pasarSeleccionado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarSeleccionado
+        //int numCandidato = lCandidatos.getSelectedIndex();
+        modelo2.addElement(modelo.get(lCandidatos.getSelectedIndex()));
+        modelo.remove(lCandidatos.getSelectedIndex());
+    }//GEN-LAST:event_pasarSeleccionado
+
+    private void rellenenarCurso(){
+        ResultSet resultado = control.obtenerRegistros("cursos", "curso");
+        try {
+            if (resultado != null) {
+                while (resultado.next()) {                    
+                    cCurso.addItem(resultado.getString("curso"));
+                }
+            }else{
+                System.out.println("Objeto vacio");
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo rellenarCurso");
+        }
+    }
+    
+    private void rellenarEvaluacion(){
+        ResultSet resultado = control.obtenerRegistros("notas", "evaluacion");
+        
+        try {
+            if (resultado != null) {
+                while (resultado.next()) {                    
+                    cEvaluacion.addItem(resultado.getString("evaluacion"));
+                }
+            } else {
+                System.out.println("Objeto Vacio");
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo rellenarEvaluacion");
+        }
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
