@@ -152,7 +152,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         b2.setPreferredSize(new java.awt.Dimension(40, 30));
         b2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b2ActionPerformed(evt);
+                todosCandidatos(evt);
             }
         });
         getContentPane().add(b2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 80, -1));
@@ -161,7 +161,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         b3.setMinimumSize(new java.awt.Dimension(40, 30));
         b3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b3ActionPerformed(evt);
+                pasarCandidato(evt);
             }
         });
         getContentPane().add(b3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, 80, -1));
@@ -170,7 +170,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         b4.setMinimumSize(new java.awt.Dimension(40, 30));
         b4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b4ActionPerformed(evt);
+                pasarSeleccionados(evt);
             }
         });
         getContentPane().add(b4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 80, -1));
@@ -186,7 +186,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         bEvaluar.setText("Evaluar");
         bEvaluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEvaluarActionPerformed(evt);
+                evaluar(evt);
             }
         });
         getContentPane().add(bEvaluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 460, -1, -1));
@@ -201,6 +201,11 @@ public class VistaAlumnos extends javax.swing.JFrame {
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, 620, 120));
 
         bProcesar.setText("Procesar");
+        bProcesar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                procesarNotas(evt);
+            }
+        });
         getContentPane().add(bProcesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 550, 90, -1));
 
         bSalir.setText("Salir");
@@ -231,21 +236,60 @@ public class VistaAlumnos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mostrarAlumnos
 
-    private void b4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b4ActionPerformed
+    private void pasarSeleccionados(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarSeleccionados
+        try {
+            for (int i = 0; i < modelo2.getSize(); i++) {
+                modelo.addElement(modelo2.getElementAt(i));
+            }
+            modelo2.removeAllElements();
+        } catch (Exception e) {
+            System.out.println("Sin Alumnos");
+        }
+    }//GEN-LAST:event_pasarSeleccionados
 
-    private void bEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEvaluarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bEvaluarActionPerformed
+    private void evaluar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluar
+        modelo3.setRowCount(0);
+        if (cAsignatura.getSelectedItem() != null) {
+            modelo3.setColumnCount(1);
+            modelo3.addColumn(cAsignatura.getSelectedItem());
+        }else{
+            System.out.println("Choice Vacio");
+        }
+        for (int i = 0; i < modelo2.getSize(); i++) {
+            ResultSet resultado = control.obtenerNota(""+modelo2.getElementAt(i), cCurso.getSelectedItem(), cEvaluacion.getSelectedItem(), cAsignatura.getSelectedItem());            
+            try {
+                if (resultado.getString("nota") == "") {
+                    modelo3.addRow(new Object[]{modelo2.getElementAt(i),0});                    
+                } else{
+                    modelo3.addRow(new Object[]{modelo2.getElementAt(i),resultado.getString("nota")});
+                }                
+            } catch (SQLException e) {
+                System.out.println("Fallo obtener notas");
+            }
+        }
+        modelo2.removeAllElements();
+    }//GEN-LAST:event_evaluar
 
-    private void b3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b3ActionPerformed
+    private void pasarCandidato(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarCandidato
+        try {
+            //int numCandidato = lCandidatos.getSelectedIndex();
+            modelo.addElement(modelo2.get(lSeleccionados.getSelectedIndex()));
+            modelo2.remove(lSeleccionados.getSelectedIndex());
+        } catch (Exception e) {
+            System.out.println("No se ha seleccionado un alumno");
+        }
+    }//GEN-LAST:event_pasarCandidato
 
-    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b2ActionPerformed
+    private void todosCandidatos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosCandidatos
+        try {
+            for (int i = 0; i < modelo.getSize(); i++) {
+                modelo2.addElement(modelo.getElementAt(i));
+            }
+            modelo.removeAllElements();
+        } catch (Exception e) {
+            System.out.println("Sin Alumnos");
+        }        
+    }//GEN-LAST:event_todosCandidatos
 
     private void salirApp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirApp
         System.exit(0);
@@ -268,10 +312,18 @@ public class VistaAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_rellenarAsignatura
 
     private void pasarSeleccionado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarSeleccionado
-        //int numCandidato = lCandidatos.getSelectedIndex();
-        modelo2.addElement(modelo.get(lCandidatos.getSelectedIndex()));
-        modelo.remove(lCandidatos.getSelectedIndex());
+        try {
+            //int numCandidato = lCandidatos.getSelectedIndex();
+            modelo2.addElement(modelo.get(lCandidatos.getSelectedIndex()));
+            modelo.remove(lCandidatos.getSelectedIndex());
+        } catch (Exception e) {
+            System.out.println("No se ha seleccionado un alumno");
+        }
     }//GEN-LAST:event_pasarSeleccionado
+
+    private void procesarNotas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarNotas
+        
+    }//GEN-LAST:event_procesarNotas
 
     private void rellenenarCurso(){
         ResultSet resultado = control.obtenerRegistros("cursos", "curso");
