@@ -90,17 +90,16 @@ public class Controlador {
         }
     }
     
-    public void modificarNota(String alumno, String asignatura, String evaluacion, float nota){
-        String sentenciaAlumno="SELECT idAlumno FROM alumnos WHERE nombre LIKE '"+alumno+"'";
-        String sentenciaAsignatura="SELECT idAsignatura FROM asignaturas WHERE asignatura LIKE '"+asignatura+"'";
-        String sentenciaSQL="UPDATE notas SET nota = "+nota+" WHERE evaluacion LIKE '"+evaluacion+"' "
-                + "AND idAlumno LIKE '"+sentenciaAlumno+"' AND idAlumno LIKE '"+sentenciaAsignatura+"'";
+    public void modificarNota(String alumno, String asignatura, String evaluacion, String nota){
+        String sentenciaSQL = "UPDATE notas SET nota = "+nota+" WHERE evaluacion LIKE '"+evaluacion+"' "
+                + "AND idAlumno = ( SELECT idAlumno FROM alumnos WHERE nombre LIKE '"+alumno+"' ) "
+                + "AND idAsignatura = ( SELECT idAsignatura FROM asignaturas WHERE asignatura LIKE '"+asignatura+"' )";
         try {
             sentencia=conexion.createStatement();
             System.out.println(sentenciaSQL);
             System.out.println("La modificación de la nota se realizó con exito");
             int notaFinal = sentencia.executeUpdate(sentenciaSQL);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("No se pudo modificar la nota");
         }
     }

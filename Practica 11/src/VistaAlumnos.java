@@ -322,7 +322,13 @@ public class VistaAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_pasarSeleccionado
 
     private void procesarNotas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarNotas
-        
+        for (int i = 0; i < modelo3.getRowCount(); i++) {
+            String nota = (String) modelo3.getValueAt(i, 1);
+            String nombre = (String) modelo3.getValueAt(i, 0);
+            String asignatura = cAsignatura.getSelectedItem();
+            String evaluacion = cEvaluacion.getSelectedItem();
+            control.modificarNota(nombre, asignatura, evaluacion, nota);
+        }
     }//GEN-LAST:event_procesarNotas
 
     private void rellenenarCurso(){
