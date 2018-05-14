@@ -84,7 +84,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         bConsultar.setText("Consultar");
         bConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bConsultarActionPerformed(evt);
+                rellenarEstadisticas(evt);
             }
         });
         getContentPane().add(bConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, -1));
@@ -104,9 +104,25 @@ public class VistaAlumnos extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_bSalirActionPerformed
 
-    private void bConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConsultarActionPerformed
-        ResultSet resultado = control.obtenerNotas( cCurso.getSelectedItem(), cEvaluacion.getSelectedItem() );
-    }//GEN-LAST:event_bConsultarActionPerformed
+    private void rellenarEstadisticas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rellenarEstadisticas
+        ResultSet resultadoProgramacion = control.obtenerNotas( cCurso.getSelectedItem(), cEvaluacion.getSelectedItem());
+        
+        try {
+            if (resultadoProgramacion != null) {
+                
+                while (resultadoProgramacion.next()) {                    
+                    int nota = resultadoProgramacion.getInt("nota");
+                    if (nota < 5) {
+                        
+                    }
+                }
+            }else{
+                System.out.println("Objeto vacio");
+            }
+        } catch (SQLException e) {
+            System.out.println("Fallo rellenarEstadisticas");
+        }
+    }//GEN-LAST:event_rellenarEstadisticas
     
     private void rellenarCurso(){
         ResultSet resultado = control.obtenerRegistros("cursos", "curso");
