@@ -70,6 +70,12 @@ public class VistaAlumnos extends javax.swing.JFrame {
         jLabel3.setText("Evaluacion:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
         getContentPane().add(cCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 140, -1));
+
+        cEvaluacion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rellenarAsignatura(evt);
+            }
+        });
         getContentPane().add(cEvaluacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 140, -1));
 
         jLabel4.setText("Estadisticas notas");
@@ -84,7 +90,7 @@ public class VistaAlumnos extends javax.swing.JFrame {
         bConsultar.setText("Consultar");
         bConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rellenarEstadisticas(evt);
+                rellenarNotas(evt);
             }
         });
         getContentPane().add(bConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, -1));
@@ -104,26 +110,56 @@ public class VistaAlumnos extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_bSalirActionPerformed
 
-    private void rellenarEstadisticas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rellenarEstadisticas
-        ResultSet resultadoProgramacion = control.obtenerNotas( cCurso.getSelectedItem(), cEvaluacion.getSelectedItem());
+    private void rellenarAsignatura(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rellenarAsignatura
+        ResultSet resultado = control.obtenerAsignaturas(cEvaluacion.getSelectedItem(), cCurso.getSelectedItem());
         
         try {
-            if (resultadoProgramacion != null) {
-                
-                while (resultadoProgramacion.next()) {                    
-                    int nota = resultadoProgramacion.getInt("nota");
-                    if (nota < 5) {
-                        
-                    }
+            if (resultado != null) {
+                modelo.setColumnCount(1);
+                while (resultado.next()) {                    
+                    modelo.addColumn( resultado.getString("asignatura") );
                 }
             }else{
-                System.out.println("Objeto vacio");
+                System.out.println("Objeto Vacio");
             }
         } catch (SQLException e) {
-            System.out.println("Fallo rellenarEstadisticas");
+            System.out.println("Fallo rellenarAsignatura()");
         }
-    }//GEN-LAST:event_rellenarEstadisticas
-    
+    }//GEN-LAST:event_rellenarAsignatura
+
+    private void rellenarNotas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rellenarNotas
+        ResultSet resultado;
+        int insuficiente,suficiente,bien,notable,sobresaliente;
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            insuficiente = 0;
+            suficiente = 0;
+            bien = 0;
+            notable = 0;
+            sobresaliente = 0;
+            resultado  = control.obtenerNotas(cEvaluacion.getSelectedItem(), cCurso.getSelectedItem(), modelo.getColumnName(i));
+            for (int j = 0; j < modelo.getRowCount(); j++) {
+                try {
+                    if (resultado != null) {
+                        if (resultado.getInt("nota") < 5 ) {
+                            insuficiente++;
+                            modelo.setValueAt(insuficiente, i, j);
+                        }else if (resultado.getInt("nota") == 5) {
+                            suficiente++;
+                        } else if(resultado.getInt("nota") == 6){
+                            bien++;
+                        }else if (resultado.getInt("nota") >= 7 && resultado.getInt("nota") <= 8) {
+                            notable++;
+                        } else {
+                            sobresaliente++;
+                        }
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Fallo rellenarNotas");
+                }
+            }
+        }
+    }//GEN-LAST:event_rellenarNotas
+         
     private void rellenarCurso(){
         ResultSet resultado = control.obtenerRegistros("cursos", "curso");
                 
