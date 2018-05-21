@@ -137,11 +137,11 @@ public class VistaEstadisticas extends javax.swing.JFrame {
                         }
                     }
                 }
-                modelo.setValueAt(""+(insuficiente*100)/numAlumnos+" %", 0, i+1);
-                modelo.setValueAt(""+(suficiente*100)/numAlumnos+" %", 1, i+1);
-                modelo.setValueAt(""+(bien*100)/numAlumnos+" %", 2, i+1);
-                modelo.setValueAt(""+(notable*100)/numAlumnos+" %", 3, i+1);
-                modelo.setValueAt(""+(sobresaliente*100)/numAlumnos+" %", 4, i+1);
+                modelo.setValueAt(""+(float)(insuficiente*100/numAlumnos)+" %", 0, i+1);
+                modelo.setValueAt(""+(float)(suficiente*100/numAlumnos)+" %", 1, i+1);
+                modelo.setValueAt(""+(float)(bien*100/numAlumnos)+" %", 2, i+1);
+                modelo.setValueAt(""+(float)(notable*100/numAlumnos)+" %", 3, i+1);
+                modelo.setValueAt(""+(float)(sobresaliente*100/numAlumnos)+" %", 4, i+1);
             }
             
             
