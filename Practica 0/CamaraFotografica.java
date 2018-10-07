@@ -42,4 +42,15 @@ public class CamaraFotografica {
 			System.out.println("No se pudo quitar el carrete");
 		}
 	}
+
+	//Nueva funcion cambiarCarrete
+	public void cambiarCarrete() {
+		if (hayCarrete()) {
+			fotosValidas += carrete.revelar();
+			fotosVeladas += carrete.fotosVeladas();
+			carrete = null;
+			this.ponerCarrete();
+		}
+		else System.out.println("No se ha podido cambiar el carrete");
+	}
 }
